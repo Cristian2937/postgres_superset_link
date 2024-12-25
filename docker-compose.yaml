@@ -10,10 +10,10 @@ services:
     volumes:
     - postgres_data:/var/lib/postgresql/data
     networks:
-    - my_network
+    - postgres_link
 
 networks:
-  my_network:
+  postgres_link:
 
 volumes:
   postgres_data:
