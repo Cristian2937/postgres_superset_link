@@ -1,0 +1,4 @@
+[submodule "docker_foundation"]
+	path = docker_foundation
+	branch = develop
+	url = https://github.com/Cristian2937/docker_foundation.git
