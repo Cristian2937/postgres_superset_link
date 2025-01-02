@@ -8,12 +8,13 @@ services:
     ports:
     - "5437:5432"
     volumes:
+    - ./createDemoTable.sql:/docker-entrypoint-initdb.d/createDemoTable.sql
     - postgres_data:/var/lib/postgresql/data
     networks:
-    - postgres_link
+    - superset_link_network
 
 networks:
-  postgres_link:
+  superset_link_network:
 
 volumes:
   postgres_data:
