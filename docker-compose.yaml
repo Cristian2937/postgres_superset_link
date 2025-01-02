@@ -1,17 +1,19 @@
 services:
   postgres_superset_link:
-    image: postgres:17
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password1
-      POSTGRES_DB: superset_link
-    ports:
-    - "5437:5432"
+    extends:
+      file: ./docker_foundation/postgres/docker-compose.yaml
+      service: postgres_superset_link
     volumes:
     - ./createDemoTable.sql:/docker-entrypoint-initdb.d/createDemoTable.sql
     - postgres_data:/var/lib/postgresql/data
     networks:
     - superset_link_network
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "user", "-d", "dwh", "-h", "localhost", "-p", "5432" ]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
 
 networks:
   superset_link_network:
