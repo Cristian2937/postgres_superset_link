@@ -9,7 +9,7 @@ services:
     networks:
     - superset_link_network
     healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "user", "-d", "dwh", "-h", "localhost", "-p", "5432" ]
+      test: [ "CMD", "pg_isready", "-U", "user", "-d", "superset_link", "-h", "localhost", "-p", "5432" ]
       interval: 10s
       retries: 5
       start_period: 30s
